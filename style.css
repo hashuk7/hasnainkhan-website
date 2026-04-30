@@ -497,6 +497,26 @@ img {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 16px 30px rgba(2, 6, 23, 0.24);
 }
 
+.project-cover-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: saturate(0.95) contrast(1.02);
+}
+
+.cover-ayla::after {
+  background: linear-gradient(180deg, rgba(10, 13, 20, 0.1), rgba(10, 13, 20, 0.42));
+}
+
+.cover-ayla strong,
+.cover-ayla .project-cover-label {
+  position: relative;
+  z-index: 2;
+}
+
 .project-cover::before,
 .project-cover::after {
   content: "";
