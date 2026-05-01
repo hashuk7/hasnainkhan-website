@@ -65,6 +65,8 @@
 
             <article class="card glass form-card" data-animate style="--delay: 130ms">
               <form data-contact-form>
+                <!-- Honeypot field to reduce spam: leave this hidden field empty -->
+                <input type="text" name="_gotcha" style="display:none" aria-hidden="true" tabindex="-1" />
                 <div class="input-grid">
                   <div>
                     <label for="name">Name</label>

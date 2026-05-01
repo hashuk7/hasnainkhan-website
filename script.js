@@ -5,6 +5,9 @@
   const menuToggle = document.querySelector("[data-menu-toggle]");
   const navLinks = document.querySelectorAll(".nav-links a");
   const siteHeader = document.querySelector(".site-header");
+  // Replace the value below with your Formspree form endpoint when ready.
+  // Example: const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mayxyzab'
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xaqvnogp';
 
   function applyTheme(theme) {
     const next = theme === "light" ? "light" : "dark";
@@ -176,13 +179,44 @@
       status.className = "form-status";
       status.textContent = "Sending your message...";
 
-      window.setTimeout(function () {
+      // Basic honeypot check (field present in form markup)
+      const gotcha = form.querySelector("[name='_gotcha']");
+      if (gotcha && gotcha.value) {
+        // likely spam
         submitButton.disabled = false;
         submitButton.textContent = originalText;
-        status.className = "form-status success";
-        status.innerHTML = "<span class=\"check\" aria-hidden=\"true\">✓</span> Sent! I'll be in touch soon.";
-        form.reset();
-      }, 1200);
+        status.className = "form-status error";
+        status.textContent = "Spam detected.";
+        return;
+      }
+
+      const data = new FormData(form);
+
+      fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            submitButton.disabled = false;
+            submitButton.textContent = originalText;
+            status.className = "form-status success";
+            status.innerHTML = "<span class=\"check\" aria-hidden=\"true\">✓</span> Sent! I'll be in touch soon.";
+            form.reset();
+          } else {
+            return response.json().then(function (err) {
+              throw new Error((err && err.error) || "Submission failed");
+            });
+          }
+        })
+        .catch(function (err) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalText;
+          status.className = "form-status error";
+          status.textContent = "Error sending message. Please try again.";
+          console.error("Form submit error:", err);
+        });
     });
   }
 
