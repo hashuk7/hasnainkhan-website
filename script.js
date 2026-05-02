@@ -38,7 +38,7 @@
     }
 
     function onScroll() {
-      if (window.scrollY > 12) {
+      if (window.scrollY > 50) {
         siteHeader.classList.add("scrolled");
       } else {
         siteHeader.classList.remove("scrolled");
@@ -49,9 +49,30 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+  function initBackToTop() {
+    const btn = document.querySelector("[data-back-to-top]");
+    if (!btn) return;
+
+    function onScroll() {
+      if (window.scrollY > 300) {
+        btn.classList.add("visible");
+      } else {
+        btn.classList.remove("visible");
+      }
+    }
+
+    btn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
   function initActiveNav() {
     const file = window.location.pathname.split("/").pop() || "index.html";
     navLinks.forEach(function (link) {
+      link.classList.remove("active");
       const href = link.getAttribute("href");
       if (href === file) {
         link.classList.add("active");
@@ -222,6 +243,7 @@
 
   initTheme();
   initHeaderState();
+  initBackToTop();
   initActiveNav();
   initMobileMenu();
   initAnimations();
