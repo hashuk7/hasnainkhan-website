@@ -1038,8 +1038,16 @@ html[data-theme="light"] .site-header.scrolled .navbar {
 
 .case-study-shot img {
   width: 100%;
+  display: block;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
+}
+
+.case-study-shot.qec-shot-focus img {
+  aspect-ratio: 16 / 9;
+  height: 320px;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .case-study-shot figcaption {
