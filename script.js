@@ -22,11 +22,11 @@
 
   function initTheme() {
     const saved = localStorage.getItem("site-theme");
-    applyTheme(saved || "dark");
+    applyTheme(saved || "light");
 
     if (themeToggle) {
       themeToggle.addEventListener("click", function () {
-        const current = html.getAttribute("data-theme") || "dark";
+        const current = html.getAttribute("data-theme") || "light";
         applyTheme(current === "dark" ? "light" : "dark");
       });
     }
