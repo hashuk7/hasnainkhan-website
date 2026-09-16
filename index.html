@@ -1,358 +1,575 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hasnain Khan | WordPress & Front-End Developer</title>
-    <meta
-      name="description"
-      content="Hasnain Khan builds fast, modern, conversion-focused WordPress and front-end websites for coaches, consultants, wellness professionals, and law firms."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <nav class="navbar" aria-label="Main navigation">
-        <a class="brand" href="index.html"><span>Hasnain Khan</span><span class="brand-dot" aria-hidden="true"></span></a>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="testimonials.html">Testimonials</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="ai-chatbot.html">AI Chatbot</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="nav-actions">
-          <button class="theme-toggle" data-theme-toggle aria-label="Switch to light mode"></button>
-          <a class="btn btn-primary" href="contact.html">Hire Me</a>
-          <button class="menu-toggle" data-menu-toggle aria-label="Toggle menu" aria-expanded="false">☰</button>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hasnain Khan — WordPress & Front-End Developer</title>
+  <meta name="description"
+    content="Personal developer portfolio of Hasnain Khan. Specialized in high-performance WordPress architecture, custom front-end development, and AI chatbot integrations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Site Intro Loader (Plays once per session) -->
+  <div id="site-loader" class="site-loader">
+    <div class="loader-scanlines"></div>
+    <div class="loader-monogram">
+      <span class="loader-letter">H</span>
+      <span class="loader-letter right">K</span>
+      <div class="loader-pulse-dot"></div>
+    </div>
+    <div class="loader-caption">Hasnain Khan · Developer Portfolio</div>
+  </div>
+
+  <!-- Floating Desktop Top Navigation -->
+  <nav class="floating-navbar" aria-label="Main navigation">
+    <a href="index.html" class="nav-item active" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+        <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      </svg>
+    </a>
+    <a href="about.html" class="nav-item">About</a>
+    <a href="projects.html" class="nav-item">Projects</a>
+    <a href="skills.html" class="nav-item">Skills</a>
+    <a href="credentials.html" class="nav-item">Credentials</a>
+    <a href="contact.html" class="nav-item">Contact</a>
+  </nav>
+
+  <!-- Mobile Floating Bottom Dock -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+    <a href="index.html" class="mobile-nav-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 10l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      </svg>
+      <span>Home</span>
+    </a>
+    <a href="about.html" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="7" r="4" />
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+      </svg>
+      <span>About</span>
+    </a>
+    <a href="projects.html" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+      </svg>
+      <span>Projects</span>
+    </a>
+    <a href="skills.html" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      </svg>
+      <span>Skills</span>
+    </a>
+    <a href="credentials.html" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="8" r="6" />
+        <path d="m15.5 13 1.5 8.5-5-2.5-5 2.5 1.5-8.5" />
+      </svg>
+      <span>Creds</span>
+    </a>
+    <a href="contact.html" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+        <polyline points="22,6 12,13 2,6" />
+      </svg>
+      <span>Contact</span>
+    </a>
+  </nav>
+
+  <!-- Layout Container -->
+  <div class="site-layout">
+    
+    <!-- Collapsible Desktop Profile Sidebar -->
+    <aside id="collapsible-sidebar" class="profile-sidebar">
+      <div class="sidebar-inner-card">
+
+        <!-- Collapsed View (Click to expand) -->
+        <div class="sidebar-collapsed-view" id="sidebar-expand-trigger" title="Click to expand profile">
+          <div class="sidebar-mini-avatar">
+            <span class="mini-avatar-text">HK</span>
+          </div>
+          <div class="sidebar-vertical-title">Software Developer</div>
+          <div class="sidebar-toggle-arrow">›</div>
         </div>
-      </nav>
-    </header>
 
-    <main>
-      <section class="hero section">
-        <div class="mesh-bg" aria-hidden="true"></div>
-        <div class="container hero-shell">
-          <div class="hero-copy" data-animate style="--delay: 0ms">
-            <span class="eyebrow">Hasnain Khan · WordPress & Front-End Developer</span>
-            <h1>Hi, I’m Hasnain — I build websites that make your work look premium and trustworthy.</h1>
-            <p>
-              I help founders, coaches, consultants, and service businesses turn their ideas into polished, conversion-focused websites that feel personal, credible, and built to win business.
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="contact.html">Book a discovery call →</a>
-              <a class="btn btn-outline" href="portfolio.html">View my work</a>
+        <!-- Expanded View (Click header to collapse) -->
+        <div class="sidebar-expanded-view">
+          <!-- Top Header Row -->
+          <div class="sidebar-header-row" id="sidebar-collapse-trigger" title="Click to collapse profile">
+            <div class="sidebar-mini-avatar">
+              <span class="mini-avatar-text">HK</span>
             </div>
-            <div class="proof-row">
-              <div>
-                <strong>3+</strong>
-                <span>Years building</span>
-              </div>
-              <div>
-                <strong>30+</strong>
-                <span>Projects delivered</span>
-              </div>
-              <div>
-                <strong>5★</strong>
-                <span>Client feedback</span>
-              </div>
+            <div class="sidebar-header-meta">
+              <h2 class="sidebar-header-name">Hasnain Khan</h2>
+              <span class="sidebar-header-pill">WordPress & Front-End</span>
             </div>
+            <div class="sidebar-collapse-chevron" title="Collapse">›</div>
           </div>
 
-          <div class="hero-visual" data-animate style="--delay: 140ms" aria-hidden="true">
-            <div class="preview-window glass">
-              <div class="window-bar">
-                <span></span>
-                <span></span>
-                <span></span>
+          <!-- Contact Details List -->
+          <div class="sidebar-details-list">
+            <div class="sidebar-detail-item">
+              <div class="sidebar-detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
               </div>
-              <div class="preview-content">
-                <div class="preview-sidebar">
-                  <span class="mini-pill">Growth</span>
-                  <div class="mini-chart"></div>
-                </div>
-                <div class="preview-main">
-                  <div class="headline-card">
-                    <p>Lead pipeline</p>
-                    <strong>+38%</strong>
-                  </div>
-                  <div class="stats-stack">
-                    <div class="stat-box">
-                      <span>Traffic</span>
-                      <strong>12.4k</strong>
-                    </div>
-                    <div class="stat-box accent-box">
-                      <span>Conversion</span>
-                      <strong>6.8%</strong>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section trust-section">
-        <div class="container">
-          <p class="section-kicker">I work with founders, consultants, and service-led businesses</p>
-          <div class="logo-row" aria-label="Client sectors">
-            <span>COACHES</span>
-            <span>CONSULTANTS</span>
-            <span>EDUCATION</span>
-            <span>HEALTHCARE</span>
-            <span>LAW</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="services">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow eyebrow-alt">What I build</p>
-              <h2 class="section-title">Websites that feel like you — and help people trust you faster.</h2>
-            </div>
-            <p class="section-lead">
-              I design and build sites for founders and service businesses who want to show up clearly, look credible,
-              and make it easier for the right people to say yes.
-            </p>
-          </div>
-
-          <div class="services-grid mt-4">
-            <article class="feature-card glass" data-animate style="--delay: 60ms">
-              <div class="card-icon">01</div>
-              <h3>WordPress website design</h3>
-              <p>Custom builds for service businesses, founders, and agencies that need clean messaging and real credibility.</p>
-            </article>
-            <article class="feature-card glass" data-animate style="--delay: 120ms">
-              <div class="card-icon">02</div>
-              <h3>Landing pages that convert</h3>
-              <p>Focused pages built around your offer, audience, and call-to-action so the right visitors take action.</p>
-            </article>
-            <article class="feature-card glass" data-animate style="--delay: 180ms">
-              <div class="card-icon">03</div>
-              <h3>Speed and UX improvements</h3>
-              <p>Performance tuning and a cleaner interface so the site feels faster, smoother, and more trustworthy.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section alt-section">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow eyebrow-alt">Selected work</p>
-              <h2 class="section-title">A few projects I’ve built for people who wanted stronger digital presence.</h2>
-            </div>
-            <a class="btn btn-outline" href="portfolio.html">See all projects</a>
-          </div>
-
-          <div class="showcase-grid mt-4">
-            <article class="showcase-card glass" data-animate style="--delay: 0ms">
-              <div class="showcase-preview preview-one"></div>
-              <div class="showcase-body">
-                <span class="tag">Medical education</span>
-                <h3>Suleman Roshan Medical College</h3>
-                <p>Rebuilt for stronger institutional trust, mobile clarity, and better admission-focused engagement.</p>
-                <a href="https://srmc.edu.pk/" target="_blank" rel="noreferrer">Visit site →</a>
-              </div>
-            </article>
-
-            <article class="showcase-card glass" data-animate style="--delay: 120ms">
-              <div class="showcase-preview preview-two"></div>
-              <div class="showcase-body">
-                <span class="tag">Healthcare</span>
-                <h3>HMIS Project</h3>
-                <p>A data-heavy dashboard interface simplified into a calm, user-friendly healthcare workflow experience.</p>
-                <a href="case-studies/hmis-project.html">Read case study →</a>
-              </div>
-            </article>
-
-            <article class="showcase-card glass" data-animate style="--delay: 200ms">
-              <div class="showcase-preview preview-three"></div>
-              <div class="showcase-body">
-                <span class="tag">Business</span>
-                <h3>Executive Coach Portfolio</h3>
-                <p>A premium personal brand site built to position expertise, attention, and lead generation in one flow.</p>
-                <a href="case-studies/executive-coach-portfolio.html">Read case study →</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="section-heading center-heading">
-            <div>
-              <p class="eyebrow eyebrow-alt">My process</p>
-              <h2 class="section-title">Straightforward, personal, and built around your goals.</h2>
-            </div>
-          </div>
-
-          <div class="process-grid mt-4">
-            <article class="process-card glass" data-animate style="--delay: 0ms">
-              <span class="step-number">01</span>
-              <h3>Discovery</h3>
-              <p>We clarify your offer, audience, and goals so the website feels intentional instead of generic.</p>
-            </article>
-            <article class="process-card glass" data-animate style="--delay: 80ms">
-              <span class="step-number">02</span>
-              <h3>Design direction</h3>
-              <p>Layouts, page structure, and writing direction are shaped around your business and buying journey.</p>
-            </article>
-            <article class="process-card glass" data-animate style="--delay: 160ms">
-              <span class="step-number">03</span>
-              <h3>Build & optimize</h3>
-              <p>The site is designed to feel premium, load fast, and work cleanly across desktop and mobile.</p>
-            </article>
-            <article class="process-card glass" data-animate style="--delay: 240ms">
-              <span class="step-number">04</span>
-              <h3>Launch & support</h3>
-              <p>After launch, I help refine details, maintain quality, and keep the site performing as it grows.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow eyebrow-alt">Client feedback</p>
-              <h2 class="section-title">The kind of work people keep referring because it feels clear, premium, and easy to trust.</h2>
-            </div>
-          </div>
-
-          <div class="testimonials-grid mt-4">
-            <article class="quote-card glass" data-animate style="--delay: 0ms">
-              <div class="stars">★★★★★</div>
-              <p class="testimonial-text">“Hasnain rebuilt our site with much clearer messaging and a more polished feel. The difference was immediate.”</p>
-              <div class="client-meta">
-                <span class="avatar">SJ</span>
-                <div>
-                  <strong>Sarah J.</strong>
-                  <p>Executive Coach</p>
+              <div class="sidebar-detail-meta">
+                <span class="sidebar-detail-label">EMAIL</span>
+                <div class="sidebar-detail-val-row">
+                  <span class="sidebar-detail-val">hasnainkhanreal18@gmail.com</span>
+                  <button type="button" id="copy-email-btn" class="copy-btn" title="Copy email address"
+                    aria-label="Copy email">
+                    <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </button>
                 </div>
               </div>
-            </article>
-
-            <article class="quote-card glass" data-animate style="--delay: 80ms">
-              <div class="stars">★★★★★</div>
-              <p class="testimonial-text">“Communication was smooth, the work was fast, and the final site feels premium without being overdesigned.”</p>
-              <div class="client-meta">
-                <span class="avatar">DR</span>
-                <div>
-                  <strong>Daniel R.</strong>
-                  <p>Consultant</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="quote-card glass" data-animate style="--delay: 160ms">
-              <div class="stars">★★★★★</div>
-              <p class="testimonial-text">“The site finally feels like it matches the level of service we offer. It gives us more confidence in sales conversations.”</p>
-              <div class="client-meta">
-                <span class="avatar">AK</span>
-                <div>
-                  <strong>Ali K.</strong>
-                  <p>Business Founder</p>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section cta-section">
-        <div class="container">
-          <div class="cta-panel glass">
-            <div>
-              <p class="eyebrow eyebrow-alt">Let’s build</p>
-              <h2>Need a website that feels like your real brand — not a template?</h2>
             </div>
-            <a class="btn btn-primary" href="contact.html">Let’s talk</a>
+
+            <div class="sidebar-detail-item">
+              <div class="sidebar-detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </div>
+              <div class="sidebar-detail-meta">
+                <span class="sidebar-detail-label">PHONE</span>
+                <span class="sidebar-detail-val">+92 305 311 0575</span>
+              </div>
+            </div>
+
+            <div class="sidebar-detail-item">
+              <div class="sidebar-detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+              </div>
+              <div class="sidebar-detail-meta">
+                <span class="sidebar-detail-label">PORTFOLIO</span>
+                <span class="sidebar-detail-val">hasnainkhan.dev</span>
+              </div>
+            </div>
+
+            <div class="sidebar-detail-item">
+              <div class="sidebar-detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div class="sidebar-detail-meta">
+                <span class="sidebar-detail-label">LOCATION</span>
+                <span class="sidebar-detail-val">Karachi, Pakistan</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Socials Row -->
+          <div class="sidebar-socials-row">
+            <a href="mailto:hasnainkhanreal18@gmail.com" class="sidebar-social-link" title="Email" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </a>
+            <a href="https://hasnainkhan.dev" target="_blank" rel="noreferrer" class="sidebar-social-link"
+              title="Website" aria-label="Website">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+              </svg>
+            </a>
+            <a href="https://github.com/hasnainkhan" target="_blank" rel="noreferrer" class="sidebar-social-link" title="GitHub"
+              aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+            </a>
+            <a href="https://linkedin.com/in/hasnainkhan18" target="_blank" rel="noreferrer" class="sidebar-social-link"
+              title="LinkedIn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- Hero Section -->
+      <section class="hero-box">
+        <div class="hero-status-pill">
+          <span class="status-dot-pulse"></span>
+          <span>Available for new projects</span>
+        </div>
+        <p class="hero-greeting">Hasnain Khan · WordPress & Front-End Developer</p>
+        <h1 class="hero-main-title">
+          BUILDING <span class="hero-highlight">FAST & MODERN</span> WEB EXPERIENCES.
+        </h1>
+        <p class="hero-lead">
+          I build high-performance WordPress architectures, custom front-end interfaces, and conversion-focused web solutions that make businesses look premium, load instantly, and turn visitors into clients.
+        </p>
+        <div class="hero-actions">
+          <a href="projects.html" class="btn btn-primary">
+            View My Work
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+          <a href="contact.html" class="btn btn-secondary">Let's Talk</a>
+        </div>
+      </section>
+
+      <!-- Section 01: By The Numbers (Metrics) -->
+      <section>
+        <p class="eyebrow">01 — METRICS</p>
+        <h2 class="section-title">Proven Track Record</h2>
+        <div class="stats-grid" style="margin-top: 1.25rem;">
+          <div class="stat-card">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">30+</div>
+            <div class="stat-label">Projects Delivered</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Client Satisfaction</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">5★</div>
+            <div class="stat-label">Average Rating</div>
           </div>
         </div>
       </section>
 
-      <section class="section">
-        <div class="container">
-          <div class="grid-2">
-            <article class="card glass" data-animate>
-              <h2 class="section-title">Testimonials Preview</h2>
-              <p class="section-lead">A quick look at what clients say about working with me.</p>
-              <div class="mt-3" style="display: grid; gap: 0.7rem">
-                <div class="card glass">
-                  <p class="testimonial-text">"Hasnain rebuilt our coaching website with clear messaging and better lead flow. We started seeing stronger inquiries within weeks."</p>
-                  <p class="muted">Sarah J. · Executive Coach, London</p>
-                </div>
-                <div class="card glass">
-                  <p class="testimonial-text">"Excellent communication, fast execution, and a very clean WordPress build. The final site feels premium and easy to manage."</p>
-                  <p class="muted">Daniel R. · Consultant, New York</p>
-                </div>
-              </div>
-              <a class="btn btn-outline mt-3" href="testimonials.html">Read All Testimonials →</a>
-            </article>
-
-            <article class="card glass" data-animate style="--delay: 100ms">
-              <h2 class="section-title">Pricing Preview</h2>
-              <p class="section-lead">Transparent project packages for different growth stages.</p>
-              <div class="mt-3" style="display: grid; gap: 0.6rem">
-                <div class="card glass"><strong>Starter</strong> <span class="muted">· $499</span></div>
-                <div class="card glass"><strong>Professional</strong> <span class="muted">· $999</span></div>
-                <div class="card glass"><strong>Premium</strong> <span class="muted">· $1,999</span></div>
-              </div>
-              <a class="btn btn-outline mt-3" href="pricing.html">See Full Pricing →</a>
-            </article>
+      <!-- Section 02: Selected Projects (Bento Showcase) -->
+      <section>
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1.25rem;">
+          <div>
+            <p class="eyebrow">02 — FEATURED WORK</p>
+            <h2 class="section-title">Selected Projects</h2>
           </div>
+          <a href="projects.html" class="project-link-btn" style="display: inline-flex; align-items: center; gap: 4px;">
+            View All Projects
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </a>
         </div>
-      </section>
 
-      <section class="section">
-        <div class="container">
-          <article class="card glass center" data-animate>
-            <h2 class="section-title">Ready to build something great?</h2>
-            <p class="section-lead" style="margin: 0 auto">Tell me about your goals and I will help you plan a website that looks premium and performs like a sales asset.</p>
-            <a class="btn btn-primary mt-3" href="contact.html" style="padding: 16px 48px;">Let's Talk</a>
-            <p class="muted" style="font-size: 13px; margin-top: 1rem; opacity: 0.8">Typically responds within 24 hours · Free consultation included</p>
+        <div class="projects-bento-grid">
+
+          <!-- Project 1: SRMC (Large) -->
+          <article class="project-bento-card large">
+            <div class="project-img-wrap">
+              <img loading="lazy" decoding="async" src="images/srmc.png" alt="Suleman Roshan Medical College Website"
+                class="project-cover-img" />
+              <span class="project-badge-float">Institutional Portal</span>
+            </div>
+            <div class="project-body">
+              <div class="project-meta-row">
+                <span class="project-category">Custom Full-Stack · Higher Education</span>
+                <span class="project-year">2026</span>
+              </div>
+              <h3 class="project-title">Suleman Roshan Medical College</h3>
+              <p class="project-desc">
+                Custom institutional web platform for srmc.edu.pk, engineered from the ground up to present academic programs, prospective student admissions, clinical departments, and institutional credibility with lightning-fast speeds.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">Custom Full-Stack</span>
+                <span class="tech-tag">PHP / MySQL</span>
+                <span class="tech-tag">Custom CSS</span>
+                <span class="tech-tag">Admissions Flow</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://srmc.edu.pk/" target="_blank" rel="noreferrer" class="project-link-btn">
+                  View Live →
+                </a>
+                <a href="case-studies/medical-college-website.html" class="project-link-btn project-link-secondary">
+                  Case Study
+                </a>
+              </div>
+            </div>
           </article>
+
+          <!-- Project 2: QEC Portal -->
+          <article class="project-bento-card">
+            <div class="project-img-wrap">
+              <img loading="lazy" decoding="async" src="images/dashboard-qec.png" alt="QEC Quality Assurance Portal" class="project-cover-img" />
+              <span class="project-badge-float">Internal Portal</span>
+            </div>
+            <div class="project-body">
+              <div class="project-meta-row">
+                <span class="project-category">WordPress · Quality Assurance</span>
+                <span class="project-year">2025</span>
+              </div>
+              <h3 class="project-title">QEC Quality Assurance Portal</h3>
+              <p class="project-desc">
+                Institutional QA portal for managing course reviews, faculty evaluations, and compliance reporting with role-based dashboard workflows.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">WordPress / PHP</span>
+                <span class="tech-tag">Dashboard UI</span>
+                <span class="tech-tag">Data Reporting</span>
+              </div>
+              <div class="project-actions">
+                <a href="case-studies/qec-portal.html" class="project-link-btn">
+                  Case Study →
+                </a>
+                <a href="contact.html" class="project-link-btn project-link-secondary">
+                  Discuss Project
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: HMIS Project -->
+          <article class="project-bento-card">
+            <div class="project-img-wrap">
+              <img loading="lazy" decoding="async" src="images/hmis-project.jpeg" alt="HMIS Healthcare System" class="project-cover-img" />
+              <span class="project-badge-float">Healthcare UI</span>
+            </div>
+            <div class="project-body">
+              <div class="project-meta-row">
+                <span class="project-category">Healthcare · UI/UX</span>
+                <span class="project-year">2025</span>
+              </div>
+              <h3 class="project-title">HMIS Healthcare System</h3>
+              <p class="project-desc">
+                Hospital management interface handling patient scheduling, electronic medical records, billing modules, and departmental reporting.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">Front-End UI</span>
+                <span class="tech-tag">Healthcare Records</span>
+                <span class="tech-tag">Workflows</span>
+              </div>
+              <div class="project-actions">
+                <a href="case-studies/hmis-project.html" class="project-link-btn">
+                  Case Study →
+                </a>
+                <a href="contact.html" class="project-link-btn project-link-secondary">
+                  Discuss Project
+                </a>
+              </div>
+            </div>
+          </article>
+
         </div>
       </section>
-    </main>
 
-    <footer class="site-footer">
-      <div class="container footer-top">
-        <div>
-          <p><strong>Hasnain Khan — WordPress & Front-End Developer</strong></p>
-          <p class="muted mt-2">Based in Pakistan · Available worldwide, remote</p>
+      <!-- Section 03: Services (What I Build) -->
+      <section>
+        <p class="eyebrow">03 — SERVICES</p>
+        <h2 class="section-title">What I Build</h2>
+        <p class="section-desc">
+          Specialized web solutions tailored to build brand authority, automate workflows, and convert visitors into long-term clients.
+        </p>
+
+        <div class="services-bento-grid">
+          <div class="service-card">
+            <span class="service-num">01 / CMS</span>
+            <h3 class="service-title">WordPress Development</h3>
+            <p class="service-desc">
+              Custom-crafted WordPress themes, Elementor Pro architecture, and tailored plugins engineered for service businesses and founders.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <span class="service-num">02 / FRONT-END</span>
+            <h3 class="service-title">Front-End Engineering</h3>
+            <p class="service-desc">
+              Clean semantic HTML5, CSS3/SCSS, and modern JavaScript builds featuring responsive mobile-first performance and fluid interactions.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <span class="service-num">03 / COMMERCE</span>
+            <h3 class="service-title">WooCommerce & Shopify</h3>
+            <p class="service-desc">
+              High-converting e-commerce storefronts, customized checkouts, product upsells, and payment gateway integrations.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <span class="service-num">04 / PERFORMANCE</span>
+            <h3 class="service-title">Speed Optimization & SEO</h3>
+            <p class="service-desc">
+              Audit and tune Core Web Vitals, asset minification, image compression, and caching strategies for sub-second page loads.
+            </p>
+          </div>
         </div>
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="portfolio.html">Portfolio</a>
-          <a href="testimonials.html">Testimonials</a>
-          <a href="pricing.html">Pricing</a>
-          <a href="contact.html">Contact</a>
+      </section>
+
+      <!-- Section 04: About & Tech Highlights (Two-Column Layout) -->
+      <section>
+        <p class="eyebrow">04 — ABOUT</p>
+        <h2 class="section-title">Engineering with Purpose</h2>
+        <div class="about-two-col" style="margin-top: 1.25rem;">
+          <div class="about-story">
+            <p>
+              I am a WordPress & Front-End Developer with over 3 years of hands-on experience delivering robust web platforms for institutions, brands, and service businesses worldwide.
+            </p>
+            <p>
+              My focus is simple: build websites that look exceptionally modern, load at lightning speed, and convert traffic into measurable business growth. I bridge the gap between design precision and rock-solid backend architecture.
+            </p>
+          </div>
+          <div class="about-skills-sidebar">
+            <span class="eyebrow" style="margin-bottom: 0.75rem;">CORE TECH STACK</span>
+            <div class="skills-tags-cluster">
+              <span class="skill-pill">WordPress</span>
+              <span class="skill-pill">Elementor Pro</span>
+              <span class="skill-pill">WooCommerce</span>
+              <span class="skill-pill">HTML5</span>
+              <span class="skill-pill">CSS3 / SCSS</span>
+              <span class="skill-pill">JavaScript (ES6+)</span>
+              <span class="skill-pill">PHP / MySQL</span>
+              <span class="skill-pill">Responsive Design</span>
+              <span class="skill-pill">Speed Optimization</span>
+              <span class="skill-pill">AI Chatbots</span>
+            </div>
+          </div>
         </div>
-        <div class="footer-right">
-          <a href="mailto:hasnainkhanreal18@gmail.com">hasnainkhanreal18@gmail.com</a>
-          <a href="https://linkedin.com/in/hasnainkhan" target="_blank" rel="noreferrer">linkedin.com/in/hasnainkhan</a>
-          <a href="https://hasnainkhan.dev" target="_blank" rel="noreferrer">hasnainkhan.dev</a>
+      </section>
+
+      <!-- Section 05: Final CTA -->
+      <section class="site-footer-cta">
+        <p class="eyebrow">05 — GET IN TOUCH</p>
+        <h3>Have a project in mind?</h3>
+        <p>
+          Let's build something that works. Reach out today to discuss your next web build or custom front-end architecture.
+        </p>
+        <a href="contact.html" class="btn btn-primary">
+          Start a Conversation →
+        </a>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Floating Terminal Button -->
+  <button id="open-terminal-btn" class="terminal-floating-btn" aria-label="Open Interactive Developer Terminal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="4 17 10 11 4 5" />
+      <line x1="12" y1="19" x2="20" y2="19" />
+    </svg>
+    <span>Terminal CLI</span>
+  </button>
+
+  <!-- Terminal Modal Overlay -->
+  <div id="terminal-modal" class="terminal-modal-overlay" role="dialog" aria-modal="true"
+    aria-label="Interactive Terminal">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-controls">
+          <button type="button" id="terminal-close-btn" class="terminal-dot close" title="Close" aria-label="Close terminal"></button>
+          <span class="terminal-dot min" aria-hidden="true"></span>
+          <span class="terminal-dot max" aria-hidden="true"></span>
+        </div>
+        <div class="terminal-title">hasnain@portfolio:~ (zsh)</div>
+        <div style="width: 40px;"></div>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-output" id="terminal-output">Initializing Khan.portfolio CLI v1.0...
+Modules loaded: [WordPress, FrontEnd, WooCommerce, AI-Chatbot]
+Connected. Type <span class="highlight">'help'</span> for available commands.</div>
+        <div class="terminal-prompt-line">
+          <span class="terminal-prompt">khan:~$</span>
+          <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false" />
         </div>
       </div>
-      <div class="container footer-bottom">© 2025 Hasnain Khan · hasnainkhan.dev</div>
-    </footer>
+    </div>
+  </div>
 
-    <button class="back-to-top" data-back-to-top aria-label="Back to top">↑</button>
-    <script src="script.js"></script>
-  </body>
+  <!-- Quick Contact Modal Overlay -->
+  <div id="quick-contact-modal" class="contact-modal-overlay" role="dialog" aria-modal="true">
+    <div class="contact-modal-card">
+      <button id="quick-contact-close" class="modal-close-btn" aria-label="Close modal">✕</button>
+      <h3 style="font-size: 1.3rem; color: #F5F7FA; margin-bottom: 0.5rem;">Quick Message</h3>
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 1.25rem;">
+        Send a note directly to Hasnain. You'll receive a response within hours.
+      </p>
+      <form id="quick-contact-form">
+        <div class="form-group">
+          <label class="form-label" for="qc-name">Your Name</label>
+          <input type="text" id="qc-name" class="form-input" required placeholder="John Doe" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="qc-email">Email Address</label>
+          <input type="email" id="qc-email" class="form-input" required placeholder="john@example.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="qc-msg">Message</label>
+          <textarea id="qc-msg" class="form-textarea" required placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+        <div class="form-status"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div>
+        <p style="color: var(--text); font-weight: 700; font-size: 16px;">Hasnain Khan</p>
+        <p style="font-size: 14px; margin-top: 0.35rem; color: var(--text-muted);">
+          WordPress & Front-End Developer · Available for remote projects worldwide
+        </p>
+      </div>
+      <div class="footer-links">
+        <span class="eyebrow" style="margin-bottom: 0.2rem;">NAVIGATION</span>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="credentials.html">Credentials</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-right">
+        <span class="eyebrow" style="margin-bottom: 0.2rem;">CONNECT</span>
+        <a href="mailto:hasnainkhanreal18@gmail.com">hasnainkhanreal18@gmail.com</a>
+        <a href="https://linkedin.com/in/hasnainkhan18" target="_blank" rel="noreferrer">linkedin.com/in/hasnainkhan18</a>
+        <a href="https://github.com/hasnainkhan" target="_blank" rel="noreferrer">github.com/hasnainkhan</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Hasnain Khan · Built with performance & care
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
 </html>

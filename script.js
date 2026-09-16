@@ -1,253 +1,369 @@
-(function () {
-  const html = document.documentElement;
-  const body = document.body;
-  const themeToggle = document.querySelector("[data-theme-toggle]");
-  const menuToggle = document.querySelector("[data-menu-toggle]");
-  const navLinks = document.querySelectorAll(".nav-links a");
-  const siteHeader = document.querySelector(".site-header");
-  // Replace the value below with your Formspree form endpoint when ready.
-  // Example: const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mayxyzab'
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xaqvnogp';
+/**
+ * HASNAIN KHAN - PORTFOLIO INTERACTIVITY
+ * Terminal CLI, Monogram Loader, Quick Contact Drawer & Filter Tabs
+ */
 
-  function applyTheme(theme) {
-    const next = theme === "light" ? "light" : "dark";
-    html.setAttribute("data-theme", next);
-    localStorage.setItem("site-theme", next);
+document.addEventListener('DOMContentLoaded', () => {
+  initLoader();
+  initCollapsibleSidebar();
+  initTerminal();
+  initContactModal();
+  initProjectFilters();
+  highlightActiveNav();
+});
 
-    if (themeToggle) {
-      themeToggle.setAttribute("aria-label", next === "dark" ? "Switch to light mode" : "Switch to dark mode");
-      themeToggle.innerHTML = next === "dark" ? "<span aria-hidden=\"true\">☀</span>" : "<span aria-hidden=\"true\">☾</span>";
-    }
+/* --------------------------------------------------------------------------
+   1. INTRO LOADER ANIMATION (Cinzel Monogram & Scanlines)
+   -------------------------------------------------------------------------- */
+function initLoader() {
+  const loader = document.getElementById('site-loader');
+  if (!loader) return;
+
+  const hasSeenLoader = sessionStorage.getItem('hk_portfolio_loader');
+  if (hasSeenLoader) {
+    loader.classList.add('hidden');
+    loader.style.display = 'none';
+    return;
   }
 
-  function initTheme() {
-    const saved = localStorage.getItem("site-theme");
-    applyTheme(saved || "light");
+  // Animate monogram and then fade out
+  const monogram = loader.querySelector('.loader-monogram');
+  setTimeout(() => {
+    if (monogram) monogram.style.gap = '0px';
+  }, 900);
 
-    if (themeToggle) {
-      themeToggle.addEventListener("click", function () {
-        const current = html.getAttribute("data-theme") || "light";
-        applyTheme(current === "dark" ? "light" : "dark");
-      });
+  setTimeout(() => {
+    loader.classList.add('hidden');
+    sessionStorage.setItem('hk_portfolio_loader', 'true');
+    setTimeout(() => {
+      loader.style.display = 'none';
+    }, 500);
+  }, 1800);
+}
+
+/* --------------------------------------------------------------------------
+   2. INTERACTIVE TERMINAL CLI
+   -------------------------------------------------------------------------- */
+function initTerminal() {
+  const terminalBtn = document.getElementById('open-terminal-btn');
+  const terminalOverlay = document.getElementById('terminal-modal');
+  const terminalCloseBtn = document.getElementById('terminal-close-btn');
+  const terminalInput = document.getElementById('terminal-input');
+  const terminalOutput = document.getElementById('terminal-output');
+
+  if (!terminalOverlay || !terminalInput) return;
+
+  const toggleTerminal = (show) => {
+    if (show) {
+      terminalOverlay.classList.add('active');
+      terminalInput.focus();
+    } else {
+      terminalOverlay.classList.remove('active');
     }
+  };
+
+  if (terminalBtn) {
+    terminalBtn.addEventListener('click', () => toggleTerminal(true));
   }
 
-  function initHeaderState() {
-    if (!siteHeader) {
-      return;
-    }
-
-    function onScroll() {
-      if (window.scrollY > 50) {
-        siteHeader.classList.add("scrolled");
-      } else {
-        siteHeader.classList.remove("scrolled");
-      }
-    }
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+  if (terminalCloseBtn) {
+    terminalCloseBtn.addEventListener('click', () => toggleTerminal(false));
   }
 
-  function initBackToTop() {
-    const btn = document.querySelector("[data-back-to-top]");
-    if (!btn) return;
+  terminalOverlay.addEventListener('click', (e) => {
+    if (e.target === terminalOverlay) toggleTerminal(false);
+  });
 
-    function onScroll() {
-      if (window.scrollY > 300) {
-        btn.classList.add("visible");
-      } else {
-        btn.classList.remove("visible");
-      }
+  // Handle Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && terminalOverlay.classList.contains('active')) {
+      toggleTerminal(false);
     }
+  });
 
-    btn.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+  // Terminal commands definition
+  const COMMANDS = {
+    help: `Available commands:
+  whoami    — Summary of Hasnain Khan
+  skills    — Core tech stack & specializations
+  projects  — Featured projects & live websites
+  services  — Website solutions I offer
+  contact   — Direct contact channels
+  socials   — LinkedIn, GitHub & web presence
+  hire      — Start a project together
+  matrix    — Wake up, Neo...
+  clear     — Clear terminal screen
+  help      — Show this command reference`,
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-  }
+    whoami: `Hasnain Khan — WordPress & Front-End Developer.
+Based in Pakistan, working with clients worldwide.
+I design & develop fast, conversion-optimized WordPress websites, custom front-end applications, and integrate intelligent AI chatbots for founders, institutions, and service businesses.`,
 
-  function initActiveNav() {
-    const file = window.location.pathname.split("/").pop() || "index.html";
-    navLinks.forEach(function (link) {
-      link.classList.remove("active");
-      const href = link.getAttribute("href");
-      if (href === file) {
-        link.classList.add("active");
-      }
-    });
-  }
+    skills: `Technical Stack:
+  [CMS]        WordPress, WooCommerce, Elementor Pro, Shopify / Liquid
+  [Front-End]  HTML5, CSS3/SCSS, JavaScript (ES6+), React, Tailwind CSS
+  [Backend]    PHP, MySQL, REST APIs, Webhooks, Python
+  [Perf & SEO] Core Web Vitals, Speed Optimization, On-Page SEO
+  [AI / Auto]  Custom AI Chatbot Integration, API Automations`,
 
-  function closeMobileMenu() {
-    body.classList.remove("nav-open");
-    if (menuToggle) {
-      menuToggle.setAttribute("aria-expanded", "false");
-    }
-  }
+    projects: `Featured Highlights:
+  1. Suleman Roshan Medical College — srmc.edu.pk (Purely Custom institutional platform)
+  2. QEC Portal — Quality Assurance & institutional reporting
+  3. HMIS Project — Healthcare Management Information System
+  4. CocoPup London & Ayla Bag — E-Commerce theme customizations
+  Type 'contact' to discuss or visit projects.html for complete gallery.`,
 
-  function initMobileMenu() {
-    if (!menuToggle) {
-      return;
-    }
+    services: `Solutions:
+  - Custom WordPress Website Design & Development
+  - High-Converting Landing Pages
+  - Performance Tuning & Core Web Vitals Boost
+  - E-Commerce (WooCommerce & Shopify)
+  - Custom AI Chatbot Integrations`,
 
-    menuToggle.addEventListener("click", function () {
-      const open = body.classList.toggle("nav-open");
-      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
-    });
+    contact: `Get in Touch:
+  Email:    hasnainkhanreal18@gmail.com
+  Website:  https://hasnainkhan.dev
+  LinkedIn: linkedin.com/in/hasnainkhan18`,
 
-    navLinks.forEach(function (link) {
-      link.addEventListener("click", closeMobileMenu);
-    });
+    socials: `Online Presence:
+  GitHub:   https://github.com
+  LinkedIn: https://linkedin.com/in/hasnainkhan18
+  Web:      https://hasnainkhan.dev`,
 
-    window.addEventListener("resize", function () {
-      if (window.innerWidth > 820) {
-        closeMobileMenu();
-      }
-    });
-  }
+    hire: `Ready to elevate your digital presence?
+Shoot an email directly to: hasnainkhanreal18@gmail.com
+Or click 'Hire Me' in the navigation.`,
 
-  function initAnimations() {
-    const items = document.querySelectorAll("[data-animate]");
-    if (!items.length) {
-      return;
-    }
+    matrix: `Follow the white rabbit... 🐇
+01001000 01100001 01110011 01101110 01100001 01101001 01101110
+[System initialized: reality loaded successfully]`
+  };
 
-    const observer = new IntersectionObserver(
-      function (entries, obs) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
+  terminalInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const rawVal = terminalInput.value.trim();
+      const cmd = rawVal.toLowerCase();
+      terminalInput.value = '';
 
-    items.forEach(function (item) {
-      observer.observe(item);
-    });
-  }
+      if (!rawVal) return;
 
-  function initPortfolioFilter() {
-    const filterButtons = document.querySelectorAll("[data-filter]");
-    const cards = document.querySelectorAll(".project-card[data-category]");
-
-    if (!filterButtons.length || !cards.length) {
-      return;
-    }
-
-    filterButtons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        const value = button.getAttribute("data-filter") || "all";
-
-        filterButtons.forEach(function (btn) {
-          btn.classList.remove("active");
-        });
-        button.classList.add("active");
-
-        cards.forEach(function (card) {
-          const categories = (card.getAttribute("data-category") || "").split(" ");
-          const match = value === "all" || categories.includes(value);
-
-          if (match) {
-            card.classList.remove("hidden");
-          } else {
-            card.classList.add("hidden");
-          }
-        });
-      });
-    });
-  }
-
-  function initFAQ() {
-    const faqButtons = document.querySelectorAll(".faq-toggle");
-    if (!faqButtons.length) {
-      return;
-    }
-
-    faqButtons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        const item = button.closest(".faq-item");
-        if (!item) {
-          return;
-        }
-
-        const isOpen = item.classList.contains("open");
-        item.classList.toggle("open");
-        button.setAttribute("aria-expanded", isOpen ? "false" : "true");
-      });
-    });
-  }
-
-  function initContactForm() {
-    const form = document.querySelector("[data-contact-form]");
-    const submitButton = form ? form.querySelector("button[type='submit']") : null;
-    const status = document.querySelector("[data-form-status]");
-
-    if (!form || !submitButton || !status) {
-      return;
-    }
-
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      const originalText = submitButton.textContent;
-      submitButton.disabled = true;
-      submitButton.textContent = "Sending...";
-      status.className = "form-status";
-      status.textContent = "Sending your message...";
-
-      // Basic honeypot check (field present in form markup)
-      const gotcha = form.querySelector("[name='_gotcha']");
-      if (gotcha && gotcha.value) {
-        // likely spam
-        submitButton.disabled = false;
-        submitButton.textContent = originalText;
-        status.className = "form-status error";
-        status.textContent = "Spam detected.";
+      if (cmd === 'clear') {
+        terminalOutput.innerHTML = '';
         return;
       }
 
-      const data = new FormData(form);
+      // Append user command
+      const cmdLine = document.createElement('div');
+      cmdLine.innerHTML = `<span class="terminal-prompt">khan:~$</span> <span>${escapeHtml(rawVal)}</span>`;
+      terminalOutput.appendChild(cmdLine);
 
-      fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        body: data,
-        headers: { Accept: "application/json" }
-      })
-        .then(function (response) {
-          if (response.ok) {
-            submitButton.disabled = false;
-            submitButton.textContent = originalText;
-            status.className = "form-status success";
-            status.innerHTML = "<span class=\"check\" aria-hidden=\"true\">✓</span> Sent! I'll be in touch soon.";
-            form.reset();
-          } else {
-            return response.json().then(function (err) {
-              throw new Error((err && err.error) || "Submission failed");
-            });
-          }
-        })
-        .catch(function (err) {
-          submitButton.disabled = false;
-          submitButton.textContent = originalText;
-          status.className = "form-status error";
-          status.textContent = "Error sending message. Please try again.";
-          console.error("Form submit error:", err);
-        });
+      // Append response
+      const respLine = document.createElement('div');
+      respLine.style.marginBottom = '0.75rem';
+
+      if (COMMANDS[cmd]) {
+        respLine.innerHTML = `<span class="highlight">${escapeHtml(COMMANDS[cmd])}</span>`;
+      } else {
+        respLine.innerHTML = `<span style="color: #ff5f56;">Command not found: '${escapeHtml(rawVal)}'. Type 'help' for available commands.</span>`;
+      }
+
+      terminalOutput.appendChild(respLine);
+
+      // Scroll to bottom
+      const terminalBody = terminalOverlay.querySelector('.terminal-body');
+      if (terminalBody) {
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+      }
+    }
+  });
+}
+
+/* --------------------------------------------------------------------------
+   3. QUICK CONTACT DRAWER MODAL
+   -------------------------------------------------------------------------- */
+function initContactModal() {
+  const openBtns = document.querySelectorAll('[data-open-contact]');
+  const contactModal = document.getElementById('quick-contact-modal');
+  const closeBtn = document.getElementById('quick-contact-close');
+  const form = document.getElementById('quick-contact-form');
+
+  if (!contactModal) return;
+
+  const toggleModal = (show) => {
+    if (show) {
+      contactModal.classList.add('active');
+    } else {
+      contactModal.classList.remove('active');
+    }
+  };
+
+  openBtns.forEach(b => b.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleModal(true);
+  }));
+
+  if (closeBtn) closeBtn.addEventListener('click', () => toggleModal(false));
+
+  contactModal.addEventListener('click', (e) => {
+    if (e.target === contactModal) toggleModal(false);
+  });
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const status = form.querySelector('.form-status');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+
+      // Simulate sending
+      setTimeout(() => {
+        if (status) {
+          status.textContent = "Thank you! Your message has been sent. I'll get back to you shortly.";
+          status.style.color = '#34d399';
+          status.style.marginTop = '0.75rem';
+        }
+        form.reset();
+        setTimeout(() => {
+          toggleModal(false);
+          if (submitBtn) submitBtn.disabled = false;
+          if (status) status.textContent = '';
+        }, 2500);
+      }, 700);
+    });
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. PROJECTS CATEGORY FILTER
+   -------------------------------------------------------------------------- */
+function initProjectFilters() {
+  const filterTabs = document.querySelectorAll('.filter-tab');
+  const projectCards = document.querySelectorAll('[data-category]');
+
+  if (!filterTabs.length || !projectCards.length) return;
+
+  filterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      filterTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const filter = tab.getAttribute('data-filter');
+
+      projectCards.forEach(card => {
+        const categories = card.getAttribute('data-category') || '';
+        if (filter === 'all' || categories.includes(filter)) {
+          card.style.display = '';
+          card.classList.add('fade-in');
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   5. ACTIVE NAVIGATION HIGHLIGHT
+   -------------------------------------------------------------------------- */
+function highlightActiveNav() {
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const navLinks = document.querySelectorAll('.nav-item, .mobile-nav-item');
+
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+      link.classList.add('active');
+    }
+  });
+}
+
+function escapeHtml(str) {
+  return str.replace(/[&<>'"]/g, 
+    tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag)
+  );
+}
+
+/* --------------------------------------------------------------------------
+   6. COLLAPSIBLE SIDEBAR TOGGLE
+   -------------------------------------------------------------------------- */
+function initCollapsibleSidebar() {
+  const sidebar = document.getElementById('collapsible-sidebar');
+  if (!sidebar) return;
+
+  const expandTrigger = document.getElementById('sidebar-expand-trigger');
+  const collapseTrigger = document.getElementById('sidebar-collapse-trigger');
+  const copyBtn = document.getElementById('copy-email-btn');
+
+  // Check saved state in localStorage (default to expanded if unset)
+  const isSavedCollapsed = localStorage.getItem('hk_sidebar_collapsed') === 'true';
+  if (isSavedCollapsed) {
+    sidebar.classList.add('collapsed');
+    if (collapseTrigger) collapseTrigger.setAttribute('aria-expanded', 'false');
+  } else {
+    sidebar.classList.remove('collapsed');
+    if (collapseTrigger) collapseTrigger.setAttribute('aria-expanded', 'true');
+  }
+
+  const setCollapsedState = (collapsed) => {
+    if (collapsed) {
+      sidebar.classList.add('collapsed');
+      localStorage.setItem('hk_sidebar_collapsed', 'true');
+      if (collapseTrigger) collapseTrigger.setAttribute('aria-expanded', 'false');
+    } else {
+      sidebar.classList.remove('collapsed');
+      localStorage.setItem('hk_sidebar_collapsed', 'false');
+      if (collapseTrigger) collapseTrigger.setAttribute('aria-expanded', 'true');
+    }
+  };
+
+  // Expand when clicking collapsed strip (desktop 84px strip)
+  if (expandTrigger) {
+    expandTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setCollapsedState(false);
     });
   }
 
-  initTheme();
-  initHeaderState();
-  initBackToTop();
-  initActiveNav();
-  initMobileMenu();
-  initAnimations();
-  initPortfolioFilter();
-  initFAQ();
-  initContactForm();
-})();
+  // Click on header row: toggles open/close on mobile, collapses on desktop
+  if (collapseTrigger) {
+    collapseTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isMobile = window.innerWidth < 1024;
+      if (isMobile) {
+        const isCollapsed = sidebar.classList.contains('collapsed');
+        setCollapsedState(!isCollapsed);
+      } else {
+        setCollapsedState(true);
+      }
+    });
+  }
+
+  // Copy Email with visual feedback
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const email = 'hasnainkhanreal18@gmail.com';
+      try {
+        await navigator.clipboard.writeText(email);
+        copyBtn.classList.add('copied');
+        setTimeout(() => copyBtn.classList.remove('copied'), 1800);
+      } catch (err) {
+        const temp = document.createElement('input');
+        temp.value = email;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        copyBtn.classList.add('copied');
+        setTimeout(() => copyBtn.classList.remove('copied'), 1800);
+      }
+    });
+  }
+}
+
