@@ -111,6 +111,8 @@ I design & develop fast, conversion-optimized WordPress websites, custom front-e
   2. QEC Portal — Quality Assurance & institutional reporting
   3. HMIS Project — Healthcare Management Information System
   4. CocoPup London & Ayla Bag — E-Commerce theme customizations
+  5. NINSS — ninss.edu.pk (Custom nursing institute website)
+  6. HomeStar Solutions & The Shedo — WordPress business websites
   Type 'contact' to discuss or visit projects.html for complete gallery.`,
 
     services: `Solutions:
